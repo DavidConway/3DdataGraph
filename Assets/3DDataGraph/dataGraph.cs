@@ -8,6 +8,11 @@ namespace DataGraph
 {
     public class dataGraph : MonoBehaviour
     {
+        [SerializeField]
+        private string googleID;
+        [SerializeField]
+        private string googleSecret;
+
         private dataPars parser;
         private barChartMain barChart;
         public enum dataScorce { googleSheet }; //possible dataScorses
@@ -25,7 +30,10 @@ namespace DataGraph
             page = 2;
 
             //calls parser
+            googleSheets primer = new googleSheets();
+            primer.GoogleClientSet(googleID, googleSecret);
             parser = new dataPars(dataScorce.googleSheet, "https://docs.google.com/spreadsheets/d/1DF15HgrXx9X-ntNgUI0RJhoUhc548RB855a-UvSj_kw/edit#gid=0",page-1,startingPoint);
+
 
             //sets mode
             switch (mode)

@@ -17,7 +17,8 @@ namespace DataParsing
 		private IList<IList<object>> sheetData;
 
 		//api in needed info
-		static string CLIENT_ID = null ;
+
+		static string CLIENT_ID = null;
 		static string CLIENT_SECRET = null;
 		static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
 
@@ -29,8 +30,12 @@ namespace DataParsing
 		//output data
 		private object[,] outData;
 
+		public googleSheets()
+		{
+
+		}
 		public googleSheets(string url, int sheet)
-        {
+		{
 			//setUp
 			sheetnumber = sheet;
 			setSheetKey(url);
@@ -42,7 +47,7 @@ namespace DataParsing
 				ApplicationName = appTitel,
 			});
 
-			try{
+			try {
 				Spreadsheet spreadSheetData = service.Spreadsheets.Get(spreadSheetKey).Execute();
 				IList<Sheet> sheets = spreadSheetData.Sheets;
 
@@ -68,7 +73,7 @@ namespace DataParsing
 			{
 				Debug.Log("error on getting data, possible bad URL" + "\n" + "error log: " + e);
 			}
-			
+
 		}
 
 		UserCredential GetCredential()
@@ -99,19 +104,19 @@ namespace DataParsing
 		{
 			int i = sheetData.Count;
 			int j = 0;
-			
+
 			//get the max number of cols
-			foreach(IList<object> k in sheetData)
+			foreach (IList<object> k in sheetData)
 			{
-				if(k.Count > j)
+				if (k.Count > j)
 				{
 					j = k.Count;
 				}
 			}
-			outData = new string[i,j];
+			outData = new string[i, j];
 
 			// fills outdata whit data from data sheet
-			for(int k = 0; k < i; k++)
+			for (int k = 0; k < i; k++)
 			{
 				for (int l = 0; l < j; l++)
 				{
@@ -125,7 +130,7 @@ namespace DataParsing
 					}
 				}
 			}
-			
+
 		}
 
 		// getters
@@ -138,7 +143,7 @@ namespace DataParsing
 		private void setSheetKey(string url)
 		{
 			spreadSheetKey = url;
-			spreadSheetKey = spreadSheetKey.Remove(0,39);
+			spreadSheetKey = spreadSheetKey.Remove(0, 39);
 			spreadSheetKey = spreadSheetKey.Remove(spreadSheetKey.IndexOf("/"));
 		}
 
@@ -148,9 +153,9 @@ namespace DataParsing
 		{
 			string Output = "";
 
-			for(int i = 0; i < outData.GetLength(0); i++)
+			for (int i = 0; i < outData.GetLength(0); i++)
 			{
-				for(int j = 0; j < outData.GetLength(1); j++)
+				for (int j = 0; j < outData.GetLength(1); j++)
 				{
 					Output += outData[i, j] + " , ";
 				}
@@ -158,5 +163,12 @@ namespace DataParsing
 			}
 			return Output;
 		}
+
+		public void GoogleClientSet(string ID, string secret)
+		{
+			CLIENT_ID = ID;
+			CLIENT_SECRET = secret;
+		}
+
 	}
 }

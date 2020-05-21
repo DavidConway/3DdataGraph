@@ -27,7 +27,6 @@ namespace barChart
                     dataPoss.Add(test, 1);
                 }
             }
-            int test2 = 0;
         }
     }
 }
