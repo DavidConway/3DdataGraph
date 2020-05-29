@@ -71,8 +71,6 @@ namespace DataParsing
                     parsedData[i, j] = data[(startingPoint[0] + 1) + i, startingPoint[1] + j];
                 }
             }
-
-            Debug.Log(ToString());
         }
 
         public override string ToString()
