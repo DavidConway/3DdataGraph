@@ -19,7 +19,7 @@ namespace DataParsing
 
 		static string CLIENT_ID = null;
 		static string CLIENT_SECRET = null;
-		///static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
+		static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
 
 		//app functionality vars
 		private string spreadSheetKey = "";
@@ -88,7 +88,7 @@ namespace DataParsing
 					clientSecrets,
 					Scopes,
 					"user",
-					CancellationToken.None).Result;
+					System.Threading.CancellationToken.None).Result;
 			}
 			catch (Exception e)
 			{
