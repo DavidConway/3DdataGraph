@@ -328,8 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1db98347081dfb45b54cc1ef2ec1522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  googleID: 
-  googleSecret: 
+  googleID: 259301828869-g0u68mcbbejg1v4m5p4l65lf6nm0vu4l.apps.googleusercontent.com
+  googleSecret: 78zev7fcVQ9WUlB84QiL0EKm
 --- !u!65 &1446259500
 BoxCollider:
   m_ObjectHideFlags: 0
