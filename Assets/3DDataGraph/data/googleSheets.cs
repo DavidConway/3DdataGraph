@@ -2,12 +2,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-///using Google.Apis.Auth.OAuth2;
-///using Google.Apis.Sheets.v4;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Sheets.v4;
 using UnityEngine;
-///using Google.Apis.Services;
-///using Google.Apis.Sheets.v4.Data;
+using Google.Apis.Services;
+using Google.Apis.Sheets.v4.Data;
 
 namespace DataParsing
 {
@@ -41,31 +40,31 @@ namespace DataParsing
 			setSheetKey(url);
 
 			//Authenticate
-			/*var service = new SheetsService(new BaseClientService.Initializer()
+			var service = new SheetsService(new BaseClientService.Initializer()
 			{
 				HttpClientInitializer = GetCredential(),
 				ApplicationName = appTitel,
-			});*/
+			});
 
 			try {
-				///Spreadsheet spreadSheetData = service.Spreadsheets.Get(spreadSheetKey).Execute();
-				///IList<Sheet> sheets = spreadSheetData.Sheets;
+				Spreadsheet spreadSheetData = service.Spreadsheets.Get(spreadSheetKey).Execute();
+				IList<Sheet> sheets = spreadSheetData.Sheets;
 
-				/*if ((sheets == null) || (sheets.Count <= 0))
+				if ((sheets == null) || (sheets.Count <= 0))
 				{
 					Debug.LogError("Not found any data!");
 					return;
-				}*/
+				}
 
 				//For each sheet in received data, add it to the .
 				List<string> ranges = new List<string>();
-				///ranges.Add(sheets[sheetnumber].Properties.Title);
+				ranges.Add(sheets[sheetnumber].Properties.Title);
 
 				//returns sheet data
-				///SpreadsheetsResource.ValuesResource.BatchGetRequest request = service.Spreadsheets.Values.BatchGet(spreadSheetKey);
-				///request.Ranges = ranges;
-				///BatchGetValuesResponse response = request.Execute();
-				///sheetData = response.ValueRanges[0].Values;
+				SpreadsheetsResource.ValuesResource.BatchGetRequest request = service.Spreadsheets.Values.BatchGet(spreadSheetKey);
+				request.Ranges = ranges;
+				BatchGetValuesResponse response = request.Execute();
+				sheetData = response.ValueRanges[0].Values;
 				genOutData();
 
 			}
@@ -76,7 +75,7 @@ namespace DataParsing
 
 		}
 
-		/*UserCredential GetCredential()
+		UserCredential GetCredential()
 		{
 
 			UserCredential credential = null;
@@ -97,7 +96,7 @@ namespace DataParsing
 			}
 
 			return credential;
-		}*/
+		}
 
 		//generate output data (row,col)
 		public void genOutData()
