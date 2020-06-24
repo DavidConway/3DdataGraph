@@ -16,4 +16,12 @@ public class dataBar : MonoBehaviour
     {
         
     }
+
+    public void dateBar(GameObject graph, float x, float y, float z)
+    {
+        GameObject bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        bar.transform.parent = graph.transform;
+        bar.transform.position.Set(x, bar.transform.position.y, z);
+        bar.transform.localScale.Set(1,y,1);
+    }
 }
