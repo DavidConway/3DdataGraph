@@ -13,8 +13,10 @@ namespace barChart
         int arrayLenght;
         List<string> widthElemets = new List<string>();
         List<string> lenghtElemets = new List<string>();
-        public barChartMain(object[,] dataIn, string[] cats)
+        GameObject graphObj;
+        public barChartMain(object[,] dataIn, string[] cats, GameObject graphObjIn)
         {
+            graphObj = graphObjIn;
             data = dataConvert(dataIn);
             groupValues values = new groupValues(data, cats);
             int arrayWidth = getWidth();// generate width info and lenght
