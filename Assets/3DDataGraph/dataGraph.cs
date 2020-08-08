@@ -42,7 +42,7 @@ namespace DataGraph
             {
                 case graphType.barchart:
                     {
-                        barChart = new barChartMain(parser.getParsedData(), parser.getCatagorys(), this.gameObject); ;
+                        barChart = new barChartMain(parser.getParsedData(), this.gameObject); ;
                         break;
                     }
             }

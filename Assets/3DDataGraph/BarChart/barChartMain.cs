@@ -11,17 +11,32 @@ namespace barChart
         string[,] data;
         int arrayWidth;
         int arrayLenght;
+        int biggestGroup;
         List<string> widthElemets = new List<string>();
         List<string> lenghtElemets = new List<string>();
         GameObject graphObj;
-        public barChartMain(object[,] dataIn, string[] cats, GameObject graphObjIn)
+        public barChartMain(object[,] dataIn, GameObject graphObjIn)
         {
             graphObj = graphObjIn;
             data = dataConvert(dataIn);
-            groupValues values = new groupValues(data, cats);
+            groupValues values = new groupValues(data);// generates a directory of string(row, col names) to int the number of times it happens
+
+            biggestGroup = values.highestValue;
             int arrayWidth = getWidth();// generate width info and lenght
             int arrayLenght = getLenght();//get lenght info and lenght.... you know what i mean
-            test();
+
+            for(int i = 0; i < widthElemets.Count; i++) //iterates trow and spawns
+            {
+                for(int j = 0; j< lenghtElemets.Count; j++)
+                {
+                    string check = widthElemets[i] + lenghtElemets[j];
+                    int numofInst;
+                    if (values.dataPoss.TryGetValue(check, out numofInst))
+                    {
+                        dataBar.spawn(graphObj, i, numofInst, j, check);
+                    }
+                }
+            }
         }
 
         private string[,] dataConvert(object[,] data)//changes all data to strings

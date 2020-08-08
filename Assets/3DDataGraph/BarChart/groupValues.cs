@@ -8,14 +8,14 @@ namespace barChart
 {
     public class groupValues
     {
-        Dictionary<string, int> dataPoss;
+        public Dictionary<string, int> dataPoss;
         /*iterates trow each peace of data
          * crates a key by combining the two cat values
          * if there is a value whit the key already it add one
          * if not then i creates a new keyvalue pair
          * */
-
-        public groupValues(string[,] data, string[] cats)
+         public int highestValue =0;
+        public groupValues(string[,] data)
         {
             dataPoss = new Dictionary<string, int>();
             for(int i = 0; i < data.GetLength(0); i++)
@@ -29,6 +29,10 @@ namespace barChart
                 if (dataPoss.TryGetValue(test, out int k) == true)
                 {
                     dataPoss[test] = dataPoss[test]+1;
+                    if (dataPoss[test] > highestValue)
+                    {
+                        highestValue = dataPoss[test];//updates if new higest value is gotten
+                    }
                 }
                 else
                 {

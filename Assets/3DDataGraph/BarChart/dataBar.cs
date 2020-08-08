@@ -17,11 +17,12 @@ public class dataBar : MonoBehaviour
         
     }
 
-    public void dateBar(GameObject graph, float x, float y, float z)
+    static public void spawn(GameObject graph, float x, float y, float z,string name)
     {
         GameObject bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
         bar.transform.parent = graph.transform;
-        bar.transform.position.Set(x, bar.transform.position.y, z);
-        bar.transform.localScale.Set(1,y,1);
+        bar.transform.localScale = new Vector3(1,y,1);
+        bar.transform.localPosition = new Vector3((float)(x +(0.5*x)), y/2,(float)(z+(z*0.5)));//moves the bar into position
+        bar.name = name;
     }
 }

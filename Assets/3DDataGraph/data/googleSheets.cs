@@ -88,7 +88,8 @@ namespace DataParsing
 					clientSecrets,
 					Scopes,
 					"user",
-					System.Threading.CancellationToken.None).Result;
+					System.Threading.CancellationToken.None,
+					new Google.Apis.Util.Store.FileDataStore("credentials")).Result;
 			}
 			catch (Exception e)
 			{
