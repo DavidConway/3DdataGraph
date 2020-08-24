@@ -19,22 +19,25 @@ namespace DataGraph
         public enum dataScorce { googleSheet }; //possible dataScorses
         public enum graphType { barchart };
         private graphType mode;
+        [SerializeField]
         private int[] startingPoint = new int[2]; // two ints to represent the data point 
+
+        [SerializeField]
         private int page;
-        
+
+        [SerializeField]
+        private string link;
+
 
         void Start()
         {
             // import/user settings
             mode = graphType.barchart;
-            startingPoint[0] = 0;
-            startingPoint[1] = 0;
-            page = 2;
 
             //calls parser
             googleSheets primer = new googleSheets();
             primer.GoogleClientSet(googleID, googleSecret);// sets statics for google aheets
-            parser = new dataPars(dataScorce.googleSheet, "https://docs.google.com/spreadsheets/d/1DF15HgrXx9X-ntNgUI0RJhoUhc548RB855a-UvSj_kw/edit#gid=0",page-1,startingPoint);
+            parser = new dataPars(dataScorce.googleSheet,link,page-1,startingPoint);
 
 
             //sets mode
@@ -46,6 +49,7 @@ namespace DataGraph
                         break;
                     }
             }
+
         }
 
         // Update is called once per frame
